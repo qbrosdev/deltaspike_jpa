@@ -1,4 +1,0 @@
-Tomcat as being a barebones JSP/Servlet container doesn't support CDI out the box.
-TomEE as being a true Java EE container already provides among others JSF and CDI out the box. 
-
-https://stackoverflow.com/a/19003725/3593084
