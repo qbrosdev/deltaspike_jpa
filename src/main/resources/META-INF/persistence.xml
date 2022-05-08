@@ -1,0 +1,50 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="MYPU" transaction-type="RESOURCE_LOCAL">
+
+        <!--transaction-type
+        The value of this element is JTA or RESOURCE_LOCAL. A transaction-type of JTA assumes that a JTA data source
+        will be provided — either as specified by the jta-data-source element or provided by the container.
+        In general, in Java EE environments, a transaction-type of RESOURCE_LOCAL assumes that a non-JTA datasource
+        will be provided. In a Java EE environment, if this element is not specified, the default is JTA.-->
+
+
+        <!-- jta-data-source
+        if the transaction type of the persistence unit is JTA, then jta-datasource element is used to
+        declare the JNDI name of the JTA data source that will be used to obtain connections.
+                <jta-data-source>java:jboss/datasources/MYSQLDS</jta-data-source>
+        if the transaction type of the persistence unit is resource-local, the non-jta-data-source should be used to
+        declare the JNDI name of a non-JTA data source.-->
+
+
+        <!--provider
+        when we use jboss we dont need to specify this cause the container has the JPA implementation in itself
+        but in tomcat we don't have any JPA implementations so it is up to us to define it -->
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+            <!--SQL server-->
+            <!--URL format: jdbc:mysql://[host][,failoverhost...][:port]/[database]-->
+            <!--<property name="hibernate.connection.url" value="jdbc:sqlserver://127.0.0.1;database=test;integratedSecurity=false;instanceName=SQL2014;"/>-->
+            <!--<property name="hibernate.connection.username" value="root"/>-->
+            <!--<property name="hibernate.connection.password" value="banner2007"/>-->
+
+            <!--Mysql-->
+            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="banner2007"/>
+
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.jdbc.charSet" value="UTF-8"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>
